@@ -1,23 +1,24 @@
+import { useNavigate } from 'react-router-dom';
 import { useCreateProject } from '../hooks/apis/mutations/useCreateProject';
-import { Button, Layout} from 'antd';
+import { Button, Layout } from 'antd';
 
 const layoutStyle = {
-    borderRadius: 8,
-    overflow: 'hidden',
-    width: 'calc(50%-80px)',
-    maxWidth: 'calc(50%-80px)',
-  };
+  borderRadius: 8,
+  overflow: 'hidden',
+  width: 'calc(50%-80px)',
+  maxWidth: 'calc(50%-80px)',
+};
 
-  const headerStyle ={
-    textAlign:'center',
-    color:"#fff",
-    height:64,
-    paddingInline:48,
-    lineHeight:'64px',
-    backgroundColor:'#4896ff'
-  }
+const headerStyle = {
+  textAlign: 'center',
+  color: "#fff",
+  height: 64,
+  paddingInline: 48,
+  lineHeight: '64px',
+  backgroundColor: '#4896ff'
+}
 
-  const contentStyle = {
+const contentStyle = {
   textAlign: 'center',
   minHeight: 120,
   lineHeight: '120px',
@@ -33,14 +34,17 @@ const footerStyle = {
 
 export const CreateProject = () => {
   const { Header, Footer, Content } = Layout;
-  
+
   const { createProjectMutation } = useCreateProject();
+  const navigate = useNavigate();
 
   async function handleCreateProject() {
     console.log('Going to trigger the api');
     try {
-      await createProjectMutation();
-      console.log('Now we should redirect to the editor');
+      const projectId = await createProjectMutation();
+      console.log("Created project with ID:", projectId);
+      navigate(`/project/${projectId}`)
+
     } catch (error) {
       console.log('Error creating project', error);
     }
