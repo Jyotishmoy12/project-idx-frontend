@@ -11,12 +11,12 @@ const layoutStyle = {
 
 const headerStyle = {
   textAlign: 'center',
-  color: "#fff",
+  color: '#fff',
   height: 64,
   paddingInline: 48,
   lineHeight: '64px',
-  backgroundColor: '#4896ff'
-}
+  backgroundColor: '#4896ff',
+};
 
 const contentStyle = {
   textAlign: 'center',
@@ -42,9 +42,8 @@ export const CreateProject = () => {
     console.log('Going to trigger the api');
     try {
       const projectId = await createProjectMutation();
-      console.log("Created project with ID:", projectId);
-      navigate(`/project/${projectId}`)
-
+      console.log('Created project with ID:', projectId);
+      navigate(`/project/${projectId}`);
     } catch (error) {
       console.log('Error creating project', error);
     }
@@ -55,13 +54,9 @@ export const CreateProject = () => {
         <h1>Create Project</h1>
       </Header>
       <Content style={contentStyle}>
-        <Button onClick={handleCreateProject}>
-          Create Playground
-        </Button>
+        <Button onClick={handleCreateProject}>Create Playground</Button>
       </Content>
-      <Footer style={footerStyle}>
-        Footer
-      </Footer>
+      <Footer style={footerStyle}>Footer</Footer>
     </Layout>
   );
 };
